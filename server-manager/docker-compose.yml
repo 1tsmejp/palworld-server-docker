@@ -1,0 +1,26 @@
+# Companion web manager for palworld-server-docker.
+# Run next to your palworld stack:  docker compose up -d --build
+# Full docs: https://github.com/1tsmejp/palworld-server-manager
+services:
+  palworld-manager:
+    build: .
+    image: palworld-server-manager:latest
+    container_name: palworld-manager
+    restart: unless-stopped
+    ports:
+      - "8220:8220"
+    environment:
+      MANAGER_PASSWORD: "CHANGE_ME"   # web UI basic-auth (any username)
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      # Mount the directory that contains your palworld docker-compose.yml,
+      # and point config/servers.json at it:
+      - /path/to/your/palworld-stack:/stacks/palworld
+      - /opt/palworld-stacks:/stacks/managed
+      - ./config:/app/config
+      - manager_data:/app/data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  manager_data:

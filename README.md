@@ -52,6 +52,27 @@ This container has also been tested and will work on both `x64` and `ARM64` base
 <!-- sponsors --><a href="https://github.com/AshishT112203"><img src="https://github.com/AshishT112203.png" width="50px" alt="AshishT112203" /></a>&nbsp;&nbsp;<a href="https://github.com/indifferentbroc"><img src="https://github.com/indifferentbroc.png" width="50px" alt="indifferentbroc" /></a>&nbsp;&nbsp;<!-- sponsors -->
 </p>
 
+## Web Server Manager (this fork)
+
+This fork bundles an optional **web management UI** in [`server-manager/`](server-manager/):
+live dashboard and player list, every server setting with validation and
+config-drift detection, in-game announcements, a review-and-deploy pipeline
+with countdown announcements and post-restart validation, a Steam Workshop
+mod browser (pak mods on this Linux image), backups, and world
+export/import/migration between servers.
+
+![Server Manager settings](server-manager/docs/img/settings.png)
+
+```bash
+cd server-manager
+# edit config/servers.json and docker-compose.yml for your setup
+docker compose up -d --build   # UI on http://<host>:8220
+```
+
+Use at your own risk — the manager edits your compose file and restarts the
+server when you deploy changes. Standalone repo with full docs and
+screenshots: **<https://github.com/1tsmejp/palworld-server-manager>**
+
 ## Official Documentation
 
 [![Documentation](https://github.com/thijsvanloef/palworld-server-docker/assets/58031337/b92d76d1-5efb-438d-9ffd-5385544a831b)](https://palworld-server-docker.loef.dev/)
